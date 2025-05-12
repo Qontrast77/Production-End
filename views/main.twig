@@ -1,0 +1,45 @@
+{% extends "__layout.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block content %}
+	<h1 class="text-center mb-4">
+		Жёсткие тачки
+	</h1>
+	<div class="container">
+		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+			{% for object in crazy_objects %}
+				<div class="col">
+					<div class="card h-100 border-0 shadow-sm">
+						<div class="position-absolute" style="right: 4px; top: 4px;">
+							<form action="/crazy_object/delete" method="POST">
+							<input type="hidden" name="id" value="{{ object.id }}">	
+								<button type="submit" class="btn btn-danger">
+									<i class="fas fa-times"></i>
+								</button>
+							</form>
+
+						</div>
+						 <div class="position-absolute" style="right: 44px; top: 4px;">
+                                        <form action="/crazy_object/{{object.id}}/update" method="get">
+                                               
+                                                <button type="submit" class="btn btn-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                </button>
+                                        </form>
+                                </div>
+						<img src="{{ object.image }}" class="card-img-top" alt="{{ object.title }}" style="height: 190px;">
+						<div class="card-body d-flex flex-column">
+							<a href="/crazy_objects/{{ object.id }}" class="btn btn-primary mb-2">
+								{{ object.title }}
+							</a>
+							<div class="d-flex justify-content-between mt-auto">
+								<a href="/crazy_objects/{{ object.id}}?show=image" class="text-decoration">Картинка</a>
+								<a href="/crazy_objects/{{ object.id}}?show=info" class="text-decoration">Описание</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

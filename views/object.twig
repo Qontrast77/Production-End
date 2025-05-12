@@ -1,0 +1,31 @@
+{% extends "__layout.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block content %}
+
+	<h1>{{ title }}</h1>
+	<ul class="nav nav-pills">
+		<li class="nav-item">
+			<a class="btn {% if show == 'image' %}btn-primary{% endif %}" href="?show=image">
+				Картинка
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="btn {% if show == 'info' %}btn-primary{% endif %}" href="?show=info">
+				Описание
+			</a>
+		</li>
+	</ul>
+
+	<div class="border p-3 mt-3">
+		{{ description }}
+		{% block objectContent %}
+			{% if show == 'image' %}
+				<img src="{{ image }}" class="img-fluid mt-3" alt="{{ title }}">
+			{% elseif show == 'info' %}
+				<div class="mt-3">{{ info|raw }}</div>
+			{% endif %}
+		{% endblock %}
+	</div>
+
+{% endblock %}
