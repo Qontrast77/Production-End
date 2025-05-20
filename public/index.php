@@ -34,7 +34,7 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $pdo = new PDO("mysql:host=localhost;dbname=crazy_cars;charset=utf8", "root", "");
 
 
-
+mb_internal_encoding('UTF-8');
 $router = new Router($twig, $pdo);
 
 $router->add("/", MainController::class)

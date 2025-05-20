@@ -8,7 +8,7 @@ class CrazyObjectCreateController extends BaseCrazyTwigController
 	public function get(array $context) // добавили параметр
 	{
 	
-
+$context['page_history'] = isset($_SESSION['page_history']) ? $_SESSION['page_history'] : [];
 		parent::get($context); // пробросили параметр
 	}
 
